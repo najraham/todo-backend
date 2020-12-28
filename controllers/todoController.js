@@ -1,4 +1,3 @@
-const express = require('express');
 const Todo = require('../models/todo');
 
 const idRegEx  = /^[0-9a-fA-F]{24}$/;
@@ -62,7 +61,6 @@ exports.todoDetail = ('/:id', async(req,res) => {
 exports.create = ('/', async(req,res) => {
     const newTodo = new Todo({
         title: req.body.title,
-        description: req.body.description,
         status: 'incomplete'
     })
     try {
@@ -86,7 +84,6 @@ exports.update = ('/:id', async(req,res) => {
                 const updateTodo = req.body;
     
                 todo.title = updateTodo.title ? updateTodo.title : todo.title;
-                todo.description = updateTodo.description ? updateTodo.description : todo.description;
                 todo.status = updateTodo.status ? updateTodo.status : todo.status;
                 
                 const t1 = await todo.save();
