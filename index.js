@@ -6,7 +6,8 @@ const cors = require('./middlewares/cors');
 const url = 'mongodb://localhost/Todo';
 mongoose.connect(url, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true
 });
 const con = mongoose.connection;
 con.on('open', () => {
@@ -24,6 +25,7 @@ app.use(cors);
 
 // routes
 app.use ('/api/todos', require('./route/api/todos'));
+app.use ('/api/users', require('./route/api/users'));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
