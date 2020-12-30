@@ -19,11 +19,11 @@ exports.changeStatus = ('/:id',async(req,res) => {
             const todo = await Todo.findById(req.params.id);
 
             if(todo) {
-                if(todo.status == "incomplete") {
-                    todo.status = "complete";
+                if(todo.complete == false) {
+                    todo.complete = true;
                 }
                 else {
-                    todo.status = "incomplete";
+                    todo.complete = false;
                 }
                 const t1 = await todo.save();
                 res.json(t1);
@@ -61,7 +61,7 @@ exports.todoDetail = ('/:id', async(req,res) => {
 exports.create = ('/', async(req,res) => {
     const newTodo = new Todo({
         title: req.body.title,
-        status: 'incomplete'
+        complete: false
     })
     try {
         if(!newTodo.title) {
@@ -84,7 +84,6 @@ exports.update = ('/:id', async(req,res) => {
                 const updateTodo = req.body;
     
                 todo.title = updateTodo.title ? updateTodo.title : todo.title;
-                todo.status = updateTodo.status ? updateTodo.status : todo.status;
                 
                 const t1 = await todo.save();
                 res.json(t1);

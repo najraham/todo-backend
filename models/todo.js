@@ -5,9 +5,8 @@ const todoSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    status: {
-        type: String,
-        enum: ['complete','incomplete'],
+    complete: {
+        type: Boolean,
         required: true
     }
 });
