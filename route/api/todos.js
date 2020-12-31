@@ -6,7 +6,7 @@ const todoController = require('../../controllers/todoController');
 router.get('/', todoController.index);
 
 // change status
-router.put('/:id', todoController.changeStatus);
+router.patch('/:id', todoController.changeStatus);
 
 // get one todo
 router.get('/:id', todoController.todoDetail);

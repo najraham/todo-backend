@@ -12,7 +12,7 @@ exports.index = ('/', async(req,res) => {
     }
 });
 
-// <PUT> change status
+// <PATCH> change status
 exports.changeStatus = ('/:id',async(req,res) => {
     if(req.params.id.match(idRegEx)) {
         try {
